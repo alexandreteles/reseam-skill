@@ -1,0 +1,8 @@
+# Build the CLI from source
+
+Offer this method when the selected release has no binary for the host. Show the release tag, required tools, and private destination. Get approval for the build and any missing prerequisites the user wants the agent to install.
+
+1. Read the CLI installation guide at the approved tag. Use the tagged engine repository for the source and for all tool version files. The guide currently refers to `rust-toolchain.toml`, `.boltffi-version`, and a JDK. Check these in the selected checkout. [Installation guide](https://reseam.app/docs/cli/install/)
+2. Create a fresh private work directory under `cache_root`. Clone the release with `git clone --depth 1 --single-branch --branch "$tag" "$repo_url" "$work/src"`. Use the official engine repository or its GitHub mirror. If switching hosts, use the same tag and commit when known. [Engine repository](https://git.reseam.app/reseam/reseam) · [GitHub mirror](https://github.com/Reseam/reseam)
+3. Check the documented Rust, BoltFFI, and Java tools. Use [Java setup](java.md) if a JDK is missing. Set `JAVA_HOME` for the build process. Direct build output and downloaded dependencies to private work directories using the build tools' environment, including `CARGO_TARGET_DIR`, `CARGO_HOME`, and `GRADLE_USER_HOME` when applicable. Use a private `RUSTUP_HOME` if the build needs to acquire a toolchain.
+4. Run the generation and build commands in the order given in the tagged guide. Locate the release executable, taking `CARGO_TARGET_DIR` into account. Stage it, check `--version`, and activate it using the same procedure as a [downloaded CLI](cli-install.md).

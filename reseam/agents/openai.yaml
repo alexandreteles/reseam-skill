@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reseam"
+  short_description: "Use the current Reseam docs and CLI"
